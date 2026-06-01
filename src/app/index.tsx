@@ -1,31 +1,24 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { View, Text, Button } from 'react-native';
+import { router } from 'expo-router';
 
-import HomeScreen from './screens/HomeScreen';
-import ScanScreen from './screens/ScanScreen';
-import MusicDetailScreen from './screens/MusicDetailScreen';
-
-const Stack = createNativeStackNavigator();
-
-export default function App() {
+export default function HomeScreen() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Library"
-          component={HomeScreen}
-        />
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Text>Band App</Text>
 
-        <Stack.Screen
-          name="Scan Music"
-          component={ScanScreen}
-        />
-
-        <Stack.Screen
-          name="Music Details"
-          component={MusicDetailScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <Button
+        title="Scan Sheet Music"
+        onPress={() => {
+        console.log('Button pressed');
+        router.push('/scan');
+      }}
+    />
+    </View>
   );
 }

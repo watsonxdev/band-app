@@ -11,6 +11,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import { addMusic } from '../database/database';
 
+import { saveScan } from '../services/storage';
 export default function ScanScreen({
   navigation
 }) {
@@ -33,6 +34,18 @@ export default function ScanScreen({
       setImage(result.assets[0].uri);
     }
   }
+  async function handleSave() {
+  if (!image) return;
+
+  await saveScan({
+    id: Date.now().toString(),
+    title,
+    instrument,
+    image,
+  });
+
+  alert('Saved to library!');
+}
 
   function saveMusic() {
     addMusic(
@@ -61,6 +74,7 @@ export default function ScanScreen({
           }}
         />
       )}
+      <Button title="Save to Library" onPress={handleSave} />
 
       <TextInput
         placeholder="Piece Title"

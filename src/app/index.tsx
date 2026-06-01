@@ -19,6 +19,10 @@ export default function HomeScreen() {
         router.push('/scan');
       }}
     />
+    <Button
+      title="Open Library"
+      onPress={() => router.push('/library')}
+    />
     </View>
   );
 }
